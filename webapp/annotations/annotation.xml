@@ -1,0 +1,182 @@
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml">
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Communication.xml">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/sap/ZPIP_UI_ALP_MARKET_ORD_O2/$metadata">
+        <edmx:Include Namespace="cds_zpip_ui_alp_market_ord"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="local">
+        
+        <!-- Visul Filters -->
+            <Annotations Target="cds_zpip_ui_alp_market_ord.ALPMarketOrderType">
+
+            <!-- 1 Visul Filter -->
+                <!-- Chart for Visul Filter -->
+                <Annotation Term="UI.Chart" Qualifier="ChFilterProdByOrdQuantity">
+                    <Record Type="UI.ChartDefinitionType">
+                       <PropertyValue Property="Title" String="Product By Orders Quantity"/>
+                       <PropertyValue Property="Description" String="Product By Orders Quantity"/>
+                       <PropertyValue Property="ChartType" EnumMember="UI.ChartType/Bar"/>
+                       <PropertyValue Property="Dimensions">
+                            <Collection>
+                                <PropertyPath>ProductName</PropertyPath>
+                            </Collection>
+                            </PropertyValue>
+                                <PropertyValue Property="Measures">
+                            <Collection>
+                                <PropertyPath>Quantity</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="MeasureAttributes">
+                            <Collection>
+                                <Record Type="UI.ChartMeasureAttributeType">
+                                    <PropertyValue Property="Measure" PropertyPath="Quantity"/>
+                                    <PropertyValue Property="DataPoint" AnnotationPath="@UI.DataPoint#DPFilterProdByOrdQuantity"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.PresentationVariant" Qualifier="PVFilterProdByOrdQuantity">
+                    <Record Type="UI.PresentationVariantType">
+                        <PropertyValue Property="Visualizations">
+                            <Collection>
+                                <AnnotationPath>@UI.Chart#ChFilterProdByOrdQuantity</AnnotationPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <!-- Data Point for Visul Filter -->
+                <Annotation Term="UI.DataPoint" Qualifier="DPFilterProdByOrdQuantity">
+                    <Record Type="UI.DataPointType">
+                        <PropertyValue Property="Value" String="Quantity"/>
+                        <PropertyValue Property="CriticalityCalculation">
+                            <Record Type="UI.CriticalityCalculationType">
+                                <PropertyValue Property="ImprovementDirection" EnumMember="UI.ImprovementDirectionType/Maximize"/>
+                                <PropertyValue Property="ToleranceRangeLowValue" Int="160000"/>
+                                <PropertyValue Property="DeviationRangeLowValue" Int="120000"/>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            <!-- End of 1 Visul Filter -->
+
+            <!-- 2 Visul Filter -->
+                <!-- Chart for Visul Filter -->
+                <Annotation Term="UI.Chart" Qualifier="ChFilterCountryByOrdQuantity">
+                    <Record Type="UI.ChartDefinitionType">
+                       <PropertyValue Property="Title" String="Country By Orders Quantity"/>
+                       <PropertyValue Property="Description" String="Country By Orders Quantity"/>
+                       <PropertyValue Property="ChartType" EnumMember="UI.ChartType/Line"/>
+                       <PropertyValue Property="Dimensions">
+                            <Collection>
+                                <PropertyPath>CountryName</PropertyPath>
+                            </Collection>
+                            </PropertyValue>
+                                <PropertyValue Property="Measures">
+                            <Collection>
+                                <PropertyPath>Quantity</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="MeasureAttributes">
+                            <Collection>
+                                <Record Type="UI.ChartMeasureAttributeType">
+                                    <PropertyValue Property="Measure" PropertyPath="Quantity"/>
+                                    <PropertyValue Property="DataPoint" AnnotationPath="@UI.DataPoint#DPFilterProdByOrdQuantity"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.PresentationVariant" Qualifier="PVFilterCountryByOrdQuantity">
+                    <Record Type="UI.PresentationVariantType">
+                        <PropertyValue Property="Visualizations">
+                            <Collection>
+                                <AnnotationPath>@UI.Chart#ChFilterCountryByOrdQuantity</AnnotationPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <!-- Data Point for Visul Filter -->
+                <Annotation Term="UI.DataPoint" Qualifier="DPFilterCountryByOrdQuantity">
+                    <Record Type="UI.DataPointType">
+                        <PropertyValue Property="Value" String="Quantity"/>
+                        <PropertyValue Property="CriticalityCalculation">
+                            <Record Type="UI.CriticalityCalculationType">
+                                <PropertyValue Property="ImprovementDirection" EnumMember="UI.ImprovementDirectionType/Maximize"/>
+                                <PropertyValue Property="ToleranceRangeLowValue" Int="200000"/>
+                                <PropertyValue Property="DeviationRangeLowValue" Int="12000"/>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            <!-- End of 2 Visul Filter -->
+        <!-- End of Visul Filters -->
+            </Annotations>
+
+        <!-- Connection Data with Visul Filters -->    
+            <!-- 1 Visul Filter -->
+            <Annotations Target="cds_zpip_ui_alp_market_ord.ALPMarketOrderType/ProductName">
+                <Annotation Term="Common.ValueList"  Qualifier="ConnectFilterProdByOrdQuantity">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="ALPMarketOrder"/>
+                        <PropertyValue Property="PresentationVariantQualifier" String="PVFilterProdByOrdQuantity"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="ProductName" />
+                                    <PropertyValue Property="ValueListProperty" String="ProductName"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <!-- Value Help for Smart Filter -->
+                <Annotation Term="Common.ValueList" Qualifier="ValueHelpSFilterProdByOrdQuantity">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="Label" String="Product"/>
+                        <PropertyValue Property="CollectionPath" String="ValueHelpProdGr"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="ProductName"/>
+                                    <PropertyValue Property="ValueListProperty" String="pgname"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="pgname"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>               
+            </Annotations>
+            <!-- 2 Visul Filter -->
+            <Annotations Target="cds_zpip_ui_alp_market_ord.ALPMarketOrderType/CountryName" >
+                <Annotation Term="Common.ValueList" Qualifier="ConnectFilterCountryByOrdQuantity">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="ALPMarketOrder"/>
+                        <PropertyValue Property="PresentationVariantQualifier" String="PVFilterCountryByOrdQuantity"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CountryName" />
+                                    <PropertyValue Property="ValueListProperty" String="CountryName"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+           
+        <!-- End of Connection Data with Visul Filters -->        
+        
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
